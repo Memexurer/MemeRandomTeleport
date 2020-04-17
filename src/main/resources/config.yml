@@ -1,0 +1,17 @@
+## MemeRadomTeleport - plugin na teleportowanie w Radomie
+## Permisje: memertp.addteleport - dodawnie teleportow
+randomtp:
+  size:
+    min: 200 # Od kratki X: 200, Z: 200
+    max: 600 # Do X: 600, Z: 600
+  effects: # Efekty nadawane podczas losowe TP
+    "HASTE 2 120" # nazwa efektu, moc, czas
+  blocked_biomes: # Biomy, na ktore nie mozna sie teleportowac
+    - "OCEAN"
+  guild_block: true # Czy ma blokowac teleportowanie na tereny gildyjne?
+  # Wymagany plugin FunnyGuilds.
+  messages: # Wiadomosc wysylana do gracza po teleoprtacji
+    - "elo elo teples sie na kordy X: {CoordX} Z: {CoordZ}"
+  items: # Itemy nadawane do ekwipunku gracza po teleportacji
+    - "STONE 1"
+  radius: 4 # Gracze z 4 blokow od przycisku będą używani do grupowego teleportu

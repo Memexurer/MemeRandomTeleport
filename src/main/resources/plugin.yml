@@ -1,0 +1,9 @@
+name: MemeRandomTp
+version: ${project.version}
+main: pl.memexurer.randomtp.RandomTeleportPlugin
+authors: [Memexurer]
+description: Plugin na losowe tp.
+commands:
+  randomtp:
+    description: Glowna komenda pluginu
+    aliases: [rtp]
