@@ -1,7 +1,10 @@
 package pl.memexurer.randomtp.rtp;
 
 import net.dzikoysk.funnyguilds.basic.guild.RegionUtils;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
 public class RandomTeleporter {
     private int minSize;
     private int maxSize;
+    private boolean clearEffects;
     private List<PotionEffect> effectList;
     private List<Biome> blockedBiomes;
     private boolean blockGuilds;
@@ -33,6 +37,7 @@ public class RandomTeleporter {
     public RandomTeleporter(ConfigurationSection section) {
         this.minSize = section.getInt("size.min");
         this.maxSize = section.getInt("size.max");
+        this.clearEffects = section.getBoolean("remove_effects");
         this.effectList = section.getStringList("effects").stream().map(str -> new PotionEffect(
                 PotionEffectType.getByName(str.split(" ")[0]),
                 Integer.parseInt(str.split(" ")[1]),
@@ -66,7 +71,9 @@ public class RandomTeleporter {
         if (event.isCancelled())
             return;
 
-        player.addPotionEffects(effectList);
+        if (clearEffects)
+            player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
+        else player.addPotionEffects(effectList);
         for (String str : messages)
             player.sendMessage(str
                     .replace("{CoordX}", response.getLocation().getBlockX() + "")
@@ -90,7 +97,9 @@ public class RandomTeleporter {
             return;
 
         for (Player player : teleportedPlayers) {
-            player.addPotionEffects(effectList);
+            if (clearEffects)
+                player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
+            else player.addPotionEffects(effectList);
             for (String str : messages)
                 player.sendMessage(str
                         .replace("{CoordX}", action.getLocation().getBlockX() + "")

@@ -4,6 +4,7 @@ randomtp:
   size:
     min: 200 # Od kratki X: 200, Z: 200
     max: 600 # Do X: 600, Z: 600
+  remove_effects: true # Ustaw na true, jezeli chcesz zeby efekty byly usuwane. (laczenie z tymi na dole)
   effects: # Efekty nadawane podczas losowe TP
     "HASTE 2 120" # nazwa efektu, moc, czas
   blocked_biomes: # Biomy, na ktore nie mozna sie teleportowac

@@ -11,6 +11,7 @@ import pl.memexurer.randomtp.data.RandomTeleportBlock;
 import pl.memexurer.randomtp.data.RandomTeleportBlockData;
 import pl.memexurer.randomtp.rtp.RandomTeleporter;
 
+import java.io.File;
 import java.util.Optional;
 
 public final class RandomTeleportPlugin extends JavaPlugin implements Listener {
@@ -19,6 +20,7 @@ public final class RandomTeleportPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        if (!(new File(getDataFolder(), "config.yml").exists())) saveResource("config.yml", false);
         RandomTeleporter randomTeleporter = new RandomTeleporter(getConfig().getConfigurationSection("randomtp"));
         this.blockData = new RandomTeleportBlockData(this.getDataFolder(), randomTeleporter);
         this.blockData.loadBlocks();

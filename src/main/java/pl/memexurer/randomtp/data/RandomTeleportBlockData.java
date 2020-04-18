@@ -1,7 +1,6 @@
 package pl.memexurer.randomtp.data;
 
 import org.bukkit.Location;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.memexurer.randomtp.rtp.RandomTeleportType;
@@ -51,7 +50,7 @@ public class RandomTeleportBlockData {
         blockMap.put(location, block);
         save();
     }
-    
+
     public boolean deleteBlock(Location location) {
         if(!blockMap.containsKey(location)) return false;
         configuration.set(getConfigPath(location), null);
